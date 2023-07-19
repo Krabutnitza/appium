@@ -22,15 +22,18 @@ public class AppiumSelenideDriver implements WebDriverProvider {
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        File app = downloadApk();
+//        File app = downloadApk();
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
         options.setDeviceName("otus");
-        options.setPlatformVersion("11.0");
-        options.setApp(app.getAbsolutePath());
+        options.setPlatformVersion("7.0");
+//        options.setApp(app.getAbsolutePath());
+        options.setApp(System.getProperty("user.dir") + "/Andy.apk");
+//        options.setAppPackage("com.pyankoff.andy");
+//        options.setAppActivity(".MainActivity");
 
         try {
             return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
