@@ -1,3 +1,4 @@
+import data.StartPageHeaderData;
 import extensions.AppiumExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,9 +10,9 @@ public class Andy_Test {
     public void startPage() {
         new MainPage()
                 .open()
-                .startPageShouldBeOpened()
+                .startPageTextSameAs(StartPageHeaderData.FIRST_PAGE_HEADER)
                 .clickNextButton()
-                .startPageTextSameAs("")
+                .startPageTextSameAs(StartPageHeaderData.SECOND_PAGE_HEADER)
                 .clickNextButton();
     }
 }

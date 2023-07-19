@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import data.StartPageHeaderData;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -20,8 +21,8 @@ public class MainPage extends AbsBasePage<MainPage> {
         return this;
     }
 
-    public MainPage startPageTextSameAs(String text) {
-        $(String.format("[text='%s']", text)).shouldBe(Condition.visible);
+    public MainPage startPageTextSameAs(StartPageHeaderData text) {
+        $(String.format("[text='%s']", text.getHeader())).shouldBe(Condition.visible);
 
         return this;
     }

@@ -7,8 +7,9 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class AppiumExtension implements BeforeAllCallback {
     @Override
-    public void beforeAll(ExtensionContext extensionContext) throws Exception {
+    public void beforeAll(ExtensionContext extensionContext) {
         Configuration.browserSize = null;
         Configuration.browser = AppiumSelenideDriver.class.getName();
+        Configuration.timeout = Long.parseLong(System.getProperty("app.timeout", "20000"));
     }
 }

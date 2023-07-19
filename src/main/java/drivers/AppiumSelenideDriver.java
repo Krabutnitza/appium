@@ -22,7 +22,6 @@ public class AppiumSelenideDriver implements WebDriverProvider {
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-//        File app = downloadApk();
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
@@ -30,10 +29,7 @@ public class AppiumSelenideDriver implements WebDriverProvider {
         options.setPlatformName("Android");
         options.setDeviceName("otus");
         options.setPlatformVersion("7.0");
-//        options.setApp(app.getAbsolutePath());
         options.setApp(System.getProperty("user.dir") + "/Andy.apk");
-//        options.setAppPackage("com.pyankoff.andy");
-//        options.setAppActivity(".MainActivity");
 
         try {
             return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
@@ -42,17 +38,4 @@ public class AppiumSelenideDriver implements WebDriverProvider {
         }
     }
 
-    private File downloadApk() {
-        File apk = new File("build/ApiDemos-debug.apk");
-        if (!apk.exists()) {
-            String url = "https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true";
-            try (InputStream in = new URL(url).openStream()) {
-                copyInputStreamToFile(in, apk);
-            }
-            catch (IOException e) {
-                throw new AssertionError("Failed to download apk", e);
-            }
-        }
-        return apk;
-    }
 }
