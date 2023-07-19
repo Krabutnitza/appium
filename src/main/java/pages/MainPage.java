@@ -1,12 +1,14 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import components.popups.AlertComponent;
 import data.StartPageHeaderData;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage extends AbsBasePage<MainPage> {
+    private SelenideElement skipButton = $("[text='Skip >']");
 
     public MainPage clickNextButton() {
         String nextButton = "[text='Next']";
@@ -15,15 +17,21 @@ public class MainPage extends AbsBasePage<MainPage> {
         return this;
     }
 
-    public MainPage startPageShouldBeOpened() {
-        $(By.id("android:id/content")).shouldBe(Condition.visible);
-
-        return this;
-    }
-
     public MainPage startPageTextSameAs(StartPageHeaderData text) {
         $(String.format("[text='%s']", text.getHeader())).shouldBe(Condition.visible);
 
         return this;
+    }
+
+    public MainPage skipButtonShouldeBeVisible() {
+        skipButton.shouldBe(Condition.visible);
+
+        return this;
+    }
+
+    public AlertComponent clickSkipButton() {
+        skipButton.click();
+
+        return new AlertComponent();
     }
 }
